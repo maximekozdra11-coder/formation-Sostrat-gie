@@ -341,7 +341,7 @@ function toggleTimer() {
     clearInterval(timerInterval);
   }
   const btn = document.getElementById('timerPlayBtn');
-  if (btn) btn.textContent = timerRunning ? '⏸ Pause' : '▶ Continuer';
+  if (btn) btn.textContent = timerRunning ? '⏸ Pause' : '▶ Reprendre';
   const cont = document.querySelector('.timer-container');
   if (cont) cont.classList.toggle('timer-running', timerRunning);
 }
