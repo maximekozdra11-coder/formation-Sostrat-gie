@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="FormateurPro — Votre assistant de facilitation pour formateurs certifiés">
+  <meta name="theme-color" content="#6B4EFF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="FormateurPro">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <title>FormateurPro</title>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="/icons/icon-192.svg">
+  <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="app-header">
+    <a class="logo" href="#home" onclick="navigate('home');return false;">
+      <span class="logo-icon">🎓</span>
+      <span>FormateurPro</span>
+    </a>
+    <div class="header-actions">
+      <button class="header-btn" title="Notifications" onclick="navigate('coaching')">🔔</button>
+      <button class="header-btn" title="À propos" onclick="showAbout()">ℹ️</button>
+    </div>
+  </header>
+
+  <!-- ===== Pages ===== -->
+  <main>
+    <div id="home"     class="page"></div>
+    <div id="toolbox"  class="page"></div>
+    <div id="journal"  class="page"></div>
+    <div id="coaching" class="page"></div>
+    <div id="quiz"     class="page"></div>
+  </main>
+
+  <!-- ===== Bottom Navigation ===== -->
+  <nav class="bottom-nav" role="navigation" aria-label="Navigation principale">
+    <button class="nav-item" data-page="home"     onclick="navigate('home')"     aria-label="Accueil">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Accueil</span>
+    </button>
+    <button class="nav-item" data-page="toolbox"  onclick="navigate('toolbox')"  aria-label="Outils">
+      <span class="nav-icon">🧰</span>
+      <span class="nav-label">Outils</span>
+    </button>
+    <button class="nav-item" data-page="journal"  onclick="navigate('journal')"  aria-label="Journal">
+      <span class="nav-icon">📓</span>
+      <span class="nav-label">Journal</span>
+    </button>
+    <button class="nav-item" data-page="coaching" onclick="navigate('coaching')" aria-label="Coaching">
+      <span class="nav-icon">⭐</span>
+      <span class="nav-label">Coaching</span>
+    </button>
+    <button class="nav-item" data-page="quiz"     onclick="navigate('quiz')"     aria-label="Quiz">
+      <span class="nav-icon">❓</span>
+      <span class="nav-label">Quiz</span>
+    </button>
+  </nav>
+
+  <!-- ===== About Modal ===== -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeAbout(event)">
+    <div class="modal">
+      <div class="modal-handle"></div>
+      <div class="modal-title">🎓 FormateurPro</div>
+      <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem;">
+        Votre assistant de facilitation, conçu pour les formateurs certifiés qui souhaitent continuer à progresser après leur formation de formateurs.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem;">
+        <div style="display:flex;gap:0.5rem;align-items:center;font-size:0.88rem;">
+          <span>🧰</span> <strong>Boîte à outils</strong> — Fiches, séquenceur, checklist
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;font-size:0.88rem;">
+          <span>📓</span> <strong>Journal</strong> — Auto-évaluation & graphiques
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;font-size:0.88rem;">
+          <span>⭐</span> <strong>Coaching</strong> — SOS Coach & supervision
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;font-size:0.88rem;">
+          <span>❓</span> <strong>Diagnostic</strong> — Quiz personnalisé
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--text-muted);text-align:center;margin-bottom:1rem;">
+        💾 Toutes les données sont stockées localement sur votre appareil.<br>
+        📶 Fonctionne hors-ligne grâce au Service Worker.
+      </div>
+      <button class="btn btn-primary btn-full" onclick="closeAbout()">Fermer</button>
+    </div>
+  </div>
+
+  <!-- ===== Scripts ===== -->
+  <script src="/js/data.js"></script>
+  <script src="/js/pages/home.js"></script>
+  <script src="/js/pages/toolbox.js"></script>
+  <script src="/js/pages/journal.js"></script>
+  <script src="/js/pages/coaching.js"></script>
+  <script src="/js/pages/quiz.js"></script>
+  <script src="/js/app.js"></script>
+
+  <script>
+    function showAbout() {
+      document.getElementById('aboutModal').classList.add('open');
+    }
+    function closeAbout(e) {
+      if (!e || e.target === document.getElementById('aboutModal')) {
+        document.getElementById('aboutModal').classList.remove('open');
+      }
+    }
+  </script>
+</body>
+</html>
